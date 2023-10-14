@@ -1,0 +1,7 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>depth_write_enable</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head>
+<body><h1>depth_write_enable(enable)</h1><h3>Description</h3>Enables
+or disables writing to the depth buffer. When writing is
+disabled, hidden surface removal will still be used, but the depth
+buffer will not change even when you draw objects. Depth buffer writing is enabled by
+default.<br><h3>Arguments</h3>This function requires that you pass in 1 argument:<br><ol><li>enable - <span style="font-style: italic;">Real.</span> Pass in a non-zero value (true) to enable depth writing, or pass in zero (false) to disable it.</li></ol><h3>Return Value</h3>This function does not return any meaningful value.<br><h3>Example</h3><code>// Disable depth writing<br>depth_write_enable(false);<br><br>// Draw a blue cube<br>draw_set_color(c_blue);<br>d3d_draw_block(-16, -16, -16, 16, 16, 16, -1, 0, 0);<br><br>// Re-enable depth writing<br>depth_write_enable(true);</code></body></html>

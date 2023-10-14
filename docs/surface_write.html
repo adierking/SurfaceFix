@@ -1,0 +1,79 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>surface_write</title>
+
+<style type="text/css"></style>
+<link rel="stylesheet" href="style.css" type="text/css"></head>
+<body>
+<span style="font-weight: bold;"></span>
+<h1>surface_write(id, format)</h1>
+<h3>Description</h3>
+Returns the contents of a surface as a string. You can choose to either
+return raw binary data, where the surface's data is returned directly
+(it's usually smaller and faster), or you can have it encode it into
+a text format first (allowing you to write the surface to a text file,
+but it's usually slower and larger).<br>
+<br>
+This function, along with&nbsp;<a href="surface_read.html">surface_read()</a>, is useful for keeping the contents of surfaces across calls to the
+display functions (which destroy all of your surfaces). It also allows you to
+save surfaces along with your saved games (if you use a custom format for your save data).<br>
+<br>
+Note that especially with larger surfaces, the string returned by this
+function uses a lot of RAM. The surface is not compressed first. Be
+sure to free the data returned by this once you don't need it anymore
+(by setting
+the variable you stored it to to a blank string, for example). Also, GM
+rounds up surfaces so that they have widths and heights that are powers
+of two. For example, this makes a 1025x1025 surface take up the same
+amount of memory as a 2048x2048 surface (which&nbsp;takes up
+approximately 16 MB of RAM in raw binary format). Be careful.<br>
+<br>
+You really should only use the text encoding option if you want to
+save the surface to a text file. Otherwise, it wastes RAM and is
+slower.<br>
+<br>
+Also note that this function is not very fast due to the way Direct3D
+works. It is&nbsp;much faster than calling surface_getpixel() for
+every pixel of the surface, though.<br>
+<h3>Arguments</h3>
+This function requires that you pass in 2 arguments:<br>
+<ol>
+<li>id - <span style="font-style: italic;">Real. </span>The
+ID of the surface to get the contents of. The surface must exist.</li>
+<li>format - <span style="font-style: italic;">Real.
+</span>The format to encode the data in. Surface Fix provides
+two constants that you can use for this: <span style="font-family: monospace;">df_binary</span> and <span style="font-family: monospace;">df_text</span>. Use the
+<span style="font-family: monospace;">df_binary</span> constant to have this function return the raw binary data of
+the surface, and use <span style="font-family: monospace;">df_text</span> to have this function return it in text
+format.</li>
+</ol>
+<h3>Return Value</h3>
+<span style="font-style: italic;">String. </span>This function returns a
+string containing the contents of the surface in the chosen format.
+If the function fails, an empty string is returned.<br>
+<br>
+The format of this string is as follows:<br>
+<br>
+<code>For the df_binary data format:<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">Byte 0</span> = 0xAA (ID used to
+identify that the data is in binary format)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">Bytes 1-4</span> = Little-endian DWORD
+value containing the width of the surface.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">Bytes 5-8</span> = Little-endian DWORD
+value containing the height of the surface.<br>
+&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-weight: bold;">Bytes 9-12</span> = Little-endian
+DWORD value containing the size of a row in bytes.<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">Bytes 13 and on</span> = The color data. Each
+pixel takes four bytes, giving each color component one byte. The
+components of each color are in the following order: Blue, Green, Red,
+Alpha. Note that since GM rounds up surface dimensions to powers of two, there may be padding in the color data.</code><br>
+<code>For the df_text data format:<br>
+<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">Character 1</span> = "/" (used to identify that
+the data is in text format)<br>
+&nbsp;&nbsp;&nbsp; <span style="font-weight: bold;">Characters 2 and on</span> = The binary data
+(see above), encoded in an Ascii85-like format. If for some reason you need the exact
+details of this format, PM me. I'm not going to explain it here.</code>
+<h3>Example</h3><code>// This example demonstrates how to write a surface to a text file.<br>// The variable "surface" contains a surface that was created earlier.<br><br>// Open the text file for writing<br>file = file_text_open_write("surface.txt");<br><br>// Write the surface to the file<br>file_text_write_string(file, surface_write(surface, df_text));<br><br>// Close the file<br>file_text_close(file);</code>
+</body></html>

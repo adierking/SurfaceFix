@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Tips and Tricks</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head><body><h1>Tips and Tricks</h1>This page gives helpful tips and tricks that you can use when dealing with surfaces.<br><ul><li>When
+a surface is created, it is not cleared. So, after you
+create a surface, be sure to switch&nbsp;to the surface and then
+clear it with draw_clear() or draw_clear_alpha(). Otherwise, it will be filled with garbage.</li><li>Surfaces only need to be powers of two in size when you use them as a texture. Otherwise, it doesn't matter.</li><li>If
+you're trying to create a post-rendering effect, try to avoid redrawing
+the screen as much as possible. It slows the game down. In some cases,
+surface_copy() can be your friend here.</li><li>By using surfaces in
+the Draw event, you can create interesting chains of rendering effects.
+You do this by making surface start and end objects with different
+depths. Each surface end object needs to have a lower depth than its corresponding surface start
+object. In the Draw event, each surface start object should set the
+drawing target to a surface, and then each surface end object should reset the target and draw that surface.
+Then, every object that has a depth that's between the depths of the
+surface start and end objects will get drawn to the surface. This
+allows you to easily create some interesting effects.</li><li>Calling
+the display changing functions will destroy all of your surfaces. This
+is hard (if not impossible) to fix, so you can save your surfaces by using <a href="surface_write.html">surface_write()</a> and <a href="surface_read.html">surface_read()</a>.</li><li>Especially
+when you use post-rendering effects, you need to check each step if your
+surfaces exist and re-create them if they don't. This is because
+certain system events (such as the screensaver popping up) can cause GM to lose its surfaces, so if you
+don't perform checks you'll end up with errors when they are lost.</li></ul></body></html>

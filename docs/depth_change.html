@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head>
+
+<meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>depth_change</title>
+
+<style type="text/css"></style>
+<link rel="stylesheet" href="style.css" type="text/css"></head><body>
+<h1>depth_change(id)</h1>
+<h3>Description</h3>
+Temporarily changes the current depth buffer to another surface's depth
+buffer. The other surface must have the same width and height as the
+current surface.<br><h3>Arguments</h3>This function requires that you pass in 1 argument:<br><ol><li>id - <span style="font-style: italic;">Real</span>.
+The ID of the surface whose depth buffer you want to change to. The
+surface must exist, and it must have the same dimensions as the current
+surface. If you pass in -1 for this argument, you will change to the
+screen's depth buffer.</li></ol><h3>Return Value</h3><span style="font-style: italic;">Real.</span> This function returns 1 (true) if it succeeds, or 0 (false) if it fails.<br><h3>Example</h3><code>// In this example, the "surface" variable holds the ID of a surface that was created earlier.<br><br>// Switch to the surface<br>surface_set_target(surface);<br>draw_clear(c_black);<br><br>// Use the screen's depth buffer<br>depth_change(-1);<br><br>// DRAWING CODE GOES HERE!<br><br>// Reset the render target<br>surface_reset_target();</code>
+</body></html>

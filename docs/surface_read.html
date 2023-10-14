@@ -1,0 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>surface_read</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head>
+<body><h1>surface_read(id, str)</h1><h3>Description</h3>Takes a string returned by <a href="surface_write.html">surface_write()</a>
+and copies its data into a surface. The data format is auto-detected.
+The surface must already exist, and its old contents will be discarded.<br><h3>Arguments</h3>This function requires that you pass in 2 arguments:<br><ol><li>id - <span style="font-style: italic;">Real.</span>
+The ID of the surface to copy the data into. It must already exist, and
+it must have the same width and height as the surface whose data is in the
+string.</li><li>str - <span style="font-style: italic;">String.</span> The string containing the surface data. Its format is auto-detected.</li></ol><h3>Return Value</h3><span style="font-style: italic;">Real.</span> This function returns 1 (true) if it succeeds, or 0 (false) if it fails.<br><h3>Example</h3><code>// This example demonstrates how to preserve a surface across a display_reset() call.<br>// The variable "surface" holds the ID of a 640x480 surface that was created earlier.<br><br>var contents;<br><br>// Grab the contents of the surface<br>contents = surface_write(surface, df_binary);<br><br>// Reset the display<br>display_reset();<br><br>// The display reset destroyed the surface, so re-create the surface<br>surface = surface_create(640, 480);<br><br>// Restore the surface's contents<br>surface_read(surface, contents);</code></body></html>

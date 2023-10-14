@@ -1,0 +1,8 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>file_bin_write_surface</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head>
+<body><h1>file_bin_write_surface(file, id)</h1><h3>Description</h3>Writes
+a surface to an already opened binary file. This function is provided because
+GM's binary file functions only let you write one byte at a time, and
+writing surfaces byte-by-byte in a loop can be rather slow. The format
+of the data that is written is the same as the <span style="font-family: monospace;">df_binary</span> format used by
+<a href="surface_write.html">surface_write()</a>.<br><br>This could be&nbsp;useful for saving surfaces along with your saved games.<br><h3>Arguments</h3>This function requires that you pass in 2 arguments:<br><ol><li>file - <span style="font-style: italic;">Real.</span> The ID of the binary file to write the surface to. It must have been opened for write access.</li><li>id - <span style="font-style: italic;">Real.</span> The ID of the surface to write to the file. It must exist.</li></ol><h3>Return Value</h3><span style="font-style: italic;">Real.</span> This function returns 1 (true) if it succeeds, or 0 (false) if it fails.<br><h3>Example</h3><code>// In this example, the "surface" variable holds the ID of a surface that was created earlier.<br><br>// Open a binary file for writing and clear it<br>file = file_bin_open("surface.dat", 1);<br>file_bin_rewrite(file);<br><br>// Write the surface to it<br>file_bin_write_surface(file, surface);<br><br>// Close the file<br>file_bin_close(file);</code></body></html>

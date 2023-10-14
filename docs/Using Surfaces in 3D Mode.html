@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Using Surfaces in 3D Mode</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head>
+<body><h1>Using Surfaces in 3D Mode</h1>Surface Fix still allows
+you to create and manage surfaces normally, so most of the surface functions should still work as they normally
+would. You just need to be aware that when you're in 3D mode, calling
+surface_set_target() or surface_reset_target() will reset the
+projection to the default 3D one. So, just call d3d_set_projection(),
+d3d_set_projection_ext(), or d3d_set_projection_ortho() after calling
+surface_set_target() or surface_reset_target() and you'll be fine. Note
+that you only need to change the projection after calling surface_reset_target() if
+you're in a Draw event.<h3>Notes</h3>Just be sure to take note of a couple of things so you don't run into problems later:<br><ul><li><span style="font-weight: bold;"></span>Be
+sure to set the aspect ratio correctly when you change the projection
+after calling surface_set_target(). In case you don't know how to do
+that, divide the surface's width by its height.<br></li><li>If
+you want to use a surface as a texture for a 3D object, its width and height need to be
+powers of two (32, 64, 128, 256, 512, 1024, etc.). Otherwise, you
+might see junk at the edges of the texture.</li></ul><h3>Example</h3>Here's an example that demonstrates the proper use of a surface in 3D mode:<br><br><code>// In this example, a 512x512 surface is being used.<br>// Its index is stored to the variable "surface".<br><br>// Set the render target to the surface and then set the projection<br>surface_set_target(surface);<br>d3d_set_projection_ext(0, -128, 16, 0, 0, 16, 0, 0, 1, 45, 1, 1, 10000);<br><br>// Clear the surface<br>draw_clear(c_black);<br><br>// Draw a blue cube<br>draw_set_color(c_blue);<br>d3d_draw_block(0, 0, 32, 32, 32, 0, -1, 0, 0);<br><br>// Reset the render target<br>surface_reset_target();<br></code></body></html>

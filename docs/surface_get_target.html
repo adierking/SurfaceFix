@@ -1,0 +1,5 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>surface_get_target</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head>
+<body><h1>surface_get_target()</h1><h3>Description</h3>Returns the ID of the surface that you are currently drawing to.<br><h3>Arguments</h3>This function does not accept any arguments.<br><h3>Return Value<span style="font-style: italic;"></span></h3><span style="font-style: italic;">Real.</span>
+This function returns the ID of the surface that you are currently
+drawing to. If you are currently drawing to the screen, -1 is returned.<h3>Example</h3><code>// In this example, "my_surface" is a variable holding the ID of a surface that was created earlier.<br><br>current_surface = surface_get_target();<br>if (current_surface == my_surface)<br>{<br>&nbsp;&nbsp;&nbsp; draw_text(8, 8, "You are drawing to my_surface.");<br>}<br>else if (current_surface == -1)<br>{<br>&nbsp;&nbsp;&nbsp; draw_text(8, 8, "You are drawing to the screen.");<br>}</code></body></html>

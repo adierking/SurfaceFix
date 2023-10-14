@@ -1,0 +1,21 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><meta content="text/html; charset=ISO-8859-1" http-equiv="content-type"><title>Basic Usage</title><style type="text/css"></style><link rel="stylesheet" href="style.css" type="text/css"></head>
+<body><h1>Basic Usage</h1><h3>Installation</h3>To use Surface Fix in
+your games, first copy SurfaceFix.dll to the same folder as your game.
+Then, import the scripts from surface_fix.gml. When your game loads,
+just call <a href="fix_surfaces.html">fix_surfaces()</a> to initialize Surface Fix. You can optionally pass in an argument to <a href="fix_surfaces.html">fix_surfaces()</a> which lets you specify the path to the DLL.<br><br>Never try to free the DLL by using external_free(). It may cause your
+game to freeze or crash. Surface Fix will clean up once the game exits.<br><br>Surface
+Fix is compatible with both Game Maker 7 and Game Maker 8. If you try
+to use it with a previous version of Game Maker, Surface Fix will
+display an error and then disable itself to prevent your game from
+crashing.<br><h3>Usage</h3>After importing the scripts and calling <a href="fix_surfaces.html">fix_surfaces()</a>, you will immediately be able
+to use room transitions and surfaces in your 3D games.<br><br>You
+don't need to write any extra code to use room transitions. You just
+use them
+like you normally would - either by using the drag-and-drop actions or
+by using transition_kind along with the room_goto functions in GML
+code. You will even be able to use custom transitions without needing
+to change them!<br><br>When
+you use surfaces in 3D mode, though, you will need&nbsp;to set the
+projection after calling surface_set_target() or
+surface_reset_target(). See <a href="Using%20Surfaces%20in%203D%20Mode.html">Using Surfaces in 3D Mode</a> for more information on this.</body></html>
